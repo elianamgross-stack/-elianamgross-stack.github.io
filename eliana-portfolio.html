@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eliana Gross — Social Media Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Syne:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #0c0c0c;
+  --gold: #CFB526;
+  --gold-light: #e8cc5a;
+  --gold-pale: #f5e9a8;
+  --cream: #faf8f3;
+  --warm-gray: #8a8880;
+  --border: #e2ddd4;
+  --surface: #f5f2eb;
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Syne', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--cream);
+  color: var(--black);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 1.6rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s, border-color 0.4s;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: rgba(250,248,243,0.95);
+  border-color: var(--border);
+  backdrop-filter: blur(10px);
+}
+.nav-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--black);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.25s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -3px;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+.nav-links a:hover { color: var(--black); }
+.nav-links a:hover::after { width: 100%; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8rem 4rem 5rem;
+  gap: 4rem;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 45%;
+  height: 100%;
+  background: var(--surface);
+  z-index: 0;
+}
+.hero-left { position: relative; z-index: 1; }
+.hero-right { position: relative; z-index: 1; }
+
+.hero-eyebrow {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.7s 0.2s ease forwards;
+}
+
+h1.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.35s ease forwards;
+}
+h1.hero-name em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-title-line {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin: 1.5rem 0 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.5s ease forwards;
+}
+.hero-title-line::before {
+  content: '';
+  display: inline-block;
+  width: 30px; height: 1px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.hero-desc {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.8;
+  color: #444;
+  max-width: 420px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.65s ease forwards;
+}
+
+.hero-actions {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s ease forwards;
+}
+.btn-gold {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  background: var(--gold);
+  color: var(--black);
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-block;
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.85rem 2rem;
+  border: 1px solid var(--border);
+  color: var(--warm-gray);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-outline:hover { border-color: var(--black); color: var(--black); }
+
+/* Hero right — visual card */
+.hero-card {
+  background: var(--black);
+  padding: 3rem 2.5rem;
+  position: relative;
+  opacity: 0;
+  animation: fadeUp 1s 0.9s ease forwards;
+}
+.hero-card::before {
+  content: '';
+  position: absolute;
+  top: -8px; left: -8px;
+  width: 100%; height: 100%;
+  border: 1px solid var(--gold);
+  z-index: -1;
+}
+.hc-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2rem;
+}
+.hc-stat {
+  border-top: 1px solid #222;
+  padding: 1.2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.hc-stat:last-child { border-bottom: 1px solid #222; }
+.hc-num {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--gold-light);
+  line-height: 1;
+}
+.hc-desc {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: #666;
+  text-align: right;
+  max-width: 140px;
+  line-height: 1.4;
+}
+.hc-platforms {
+  margin-top: 2rem;
+  display: flex; gap: 0.75rem;
+}
+.hc-pill {
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #333;
+  color: #666;
+}
+.hc-pill.active { border-color: var(--gold); color: var(--gold); }
+
+/* ── SECTION BASE ── */
+section { padding: 7rem 4rem; }
+.section-header { margin-bottom: 4rem; }
+.section-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+h2.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+}
+h2.section-heading em { font-style: italic; color: var(--gold); }
+
+/* ── ABOUT ── */
+#about { background: var(--black); color: var(--cream); }
+#about .section-tag { color: var(--gold); }
+#about h2.section-heading { color: var(--cream); }
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 6rem;
+  align-items: start;
+}
+.about-text p {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+.about-text p strong { color: var(--cream); font-weight: 400; }
+.about-text p em { color: var(--gold-light); font-style: italic; }
+
+.about-facts { display: flex; flex-direction: column; gap: 0; }
+.about-fact {
+  border-top: 1px solid #1e1e1e;
+  padding: 1.4rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.about-fact:last-child { border-bottom: 1px solid #1e1e1e; }
+.fact-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #555;
+}
+.fact-value {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--gold-light);
+  text-align: right;
+}
+
+/* ── EXPERIENCE ── */
+#experience { background: var(--cream); }
+.exp-list { display: flex; flex-direction: column; gap: 0; }
+.exp-item {
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 0;
+  display: grid;
+  grid-template-columns: 200px 1fr auto;
+  gap: 2rem;
+  align-items: start;
+  transition: background 0.2s;
+  cursor: default;
+}
+.exp-item:last-child { border-bottom: 1px solid var(--border); }
+.exp-org {
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  padding-top: 0.2rem;
+}
+.exp-org span {
+  display: block;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+  font-size: 0.62rem;
+}
+.exp-role {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+.exp-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.exp-bullets li {
+  font-size: 0.85rem;
+  color: var(--warm-gray);
+  line-height: 1.6;
+  padding-left: 1rem;
+  position: relative;
+}
+.exp-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+.exp-date {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: var(--warm-gray);
+  text-align: right;
+  padding-top: 0.3rem;
+  white-space: nowrap;
+}
+
+/* ── SERVICES ── */
+#services { background: var(--surface); }
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.service-card {
+  background: var(--cream);
+  padding: 2.5rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s;
+}
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--gold);
+  transition: width 0.4s ease;
+}
+.service-card:hover { background: #fff; }
+.service-card:hover::after { width: 100%; }
+.svc-num {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.svc-name {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+.svc-desc {
+  font-size: 0.82rem;
+  color: var(--warm-gray);
+  line-height: 1.75;
+}
+.svc-tag {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  color: var(--warm-gray);
+}
+
+/* ── WORK ── */
+#work { background: var(--cream); }
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.work-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 2.5rem;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.work-card:hover { border-color: var(--gold); }
+.work-card::before {
+  content: attr(data-num);
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 300;
+  color: var(--border);
+  line-height: 1;
+}
+.work-platforms {
+  display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
+}
+.work-plat {
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  background: var(--black);
+  color: var(--gold);
+}
+.work-client {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 0.5rem;
+}
+.work-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  line-height: 1.2;
+}
+.work-result {
+  font-size: 0.8rem;
+  color: var(--warm-gray);
+  line-height: 1.6;
+}
+.work-result strong { color: var(--gold); font-weight: 500; }
+.work-note {
+  margin-top: 2rem;
+  font-size: 0.68rem;
+  color: var(--warm-gray);
+  letter-spacing: 0.05em;
+  font-style: italic;
+}
+
+/* ── CONTACT ── */
+#contact { background: var(--black); color: var(--cream); }
+#contact .section-tag { color: var(--gold); }
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.contact-big {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+.contact-big em { font-style: italic; color: var(--gold); }
+.contact-sub {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #888;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+  max-width: 380px;
+}
+.contact-links { display: flex; flex-direction: column; gap: 1.5px; }
+.contact-link-row {
+  background: #111;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  transition: background 0.2s;
+  group: true;
+}
+.contact-link-row:hover { background: #1a1a1a; }
+.contact-link-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #555;
+}
+.contact-link-val {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--cream);
+  transition: color 0.2s;
+}
+.contact-link-row:hover .contact-link-val { color: var(--gold-light); }
+.contact-arrow { color: #333; font-size: 1rem; transition: color 0.2s, transform 0.2s; }
+.contact-link-row:hover .contact-arrow { color: var(--gold); transform: translate(3px, -3px); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  border-top: 1px solid #1a1a1a;
+  padding: 2rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: #444;
+}
+.footer-copy {
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: #333;
+  text-transform: uppercase;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 1.5rem; }
+  .nav-links { display: none; }
+  section { padding: 5rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; }
+  .hero::before { display: none; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .services-grid { grid-template-columns: 1fr; }
+  .work-grid { grid-template-columns: 1fr; }
+  .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  .exp-date { text-align: left; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-name" href="#">Eliana Gross</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Social Media Marketing — Available for Freelance</p>
+    <h1 class="hero-name">Eliana<br><em>Gross</em></h1>
+    <div class="hero-title-line">Content Strategist &amp; Social Media Marketer</div>
+    <p class="hero-desc">Purdue University student turning brand presence into real growth — on Instagram, TikTok, and everywhere people actually scroll. Based in West Lafayette, working with anyone, anywhere.</p>
+    <div class="hero-actions">
+      <a href="#work" class="btn-gold">View Portfolio</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-card">
+      <div class="hc-label">At a Glance</div>
+      <div class="hc-stat">
+        <div class="hc-num">4+</div>
+        <div class="hc-desc">Years creating social content</div>
+      </div>
+      <div class="hc-stat">
+        <div class="hc-num" style="font-size:1.4rem; letter-spacing:0.05em;">AKPsi</div>
+        <div class="hc-desc">VP of Public Relations</div>
+      </div>
+      <div class="hc-stat">
+        <div class="hc-num">100%</div>
+        <div class="hc-desc">Remote-friendly, work with anyone anywhere</div>
+      </div>
+      <div class="hc-platforms">
+        <span class="hc-pill active">Instagram</span>
+        <span class="hc-pill active">TikTok</span>
+        <span class="hc-pill">LinkedIn</span>
+        <span class="hc-pill">YouTube</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <p class="section-tag">About Me</p>
+    <h2 class="section-heading">Strategy Meets<br><em>Storytelling</em></h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a <strong>General Management student at Purdue University</strong> with a concentration in Management Consulting — and a genuine obsession with how brands show up online.</p>
+      <p>I've been making content since <em>2021</em> — starting as a TikTok brand ambassador for iBlason, then growing into YouTube creation and series hosting for Purdue's Boiler Ambassadors program, and now leading social media for Alpha Kappa Psi as VP of Public Relations.</p>
+      <p>I bring a rare mix of <strong>creative instinct and analytical thinking</strong> to every project. I know how to build content systems, write hooks that hold attention, and actually read the data to know what's working. And I work digitally — so <em>I can help you from anywhere.</em></p>
+    </div>
+    <div class="about-facts reveal reveal-delay-2">
+      <div class="about-fact">
+        <span class="fact-label">University</span>
+        <span class="fact-value">Purdue — Mitch Daniels<br>School of Business</span>
+      </div>
+      <div class="about-fact">
+        <span class="fact-label">Graduation</span>
+        <span class="fact-value">May 2028</span>
+      </div>
+      <div class="about-fact">
+        <span class="fact-label">Concentration</span>
+        <span class="fact-value">Management Consulting</span>
+      </div>
+      <div class="about-fact">
+        <span class="fact-label">Minor</span>
+        <span class="fact-value">Spanish</span>
+      </div>
+      <div class="about-fact">
+        <span class="fact-label">Location</span>
+        <span class="fact-value">West Lafayette, IN<br>— works remotely</span>
+      </div>
+      <div class="about-fact">
+        <span class="fact-label">Status</span>
+        <span class="fact-value">Open to Freelance</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header reveal">
+    <p class="section-tag">Experience</p>
+    <h2 class="section-heading">What I've<br><em>Actually Done</em></h2>
+  </div>
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-org">
+        <span>Brand Ambassador</span>
+        iBlason
+      </div>
+      <div>
+        <div class="exp-role">TikTok Brand Ambassador</div>
+        <ul class="exp-bullets">
+          <li>Created TikTok content promoting iBlason phone cases to an engaged consumer audience</li>
+          <li>Developed on-brand short-form video concepts aligned with product launches and trends</li>
+          <li>Built early hands-on experience with TikTok algorithm, hooks, and creator-style marketing</li>
+        </ul>
+      </div>
+      <div class="exp-date">2021 — 2023</div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-org">
+        <span>Content Creation</span>
+        Purdue Boiler Ambassadors
+      </div>
+      <div>
+        <div class="exp-role">YouTube Creator &amp; Series Host</div>
+        <ul class="exp-bullets">
+          <li>Created social content to engage current and prospective Purdue students in campus culture</li>
+          <li>Filmed and edited vlogs for the official Purdue YouTube channel</li>
+          <li>Wrote and hosted a scripted campus series called <em>A Closer Look</em></li>
+          <li>Modeled in Purdue Brand Studio photoshoots for student representation campaigns</li>
+        </ul>
+      </div>
+      <div class="exp-date">Aug 2025 — Present</div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-org">
+        <span>Leadership / Social</span>
+        Alpha Kappa &Psi;
+      </div>
+      <div>
+        <div class="exp-role">VP of Public Relations</div>
+        <ul class="exp-bullets">
+          <li>Oversee Instagram and LinkedIn pages, keeping content relevant and on-trend</li>
+          <li>Manage the marketing committee for consistent posting and strategy</li>
+          <li>Previously served as Marketing Committee Head, Pledge Trainer, and Historian</li>
+          <li>Created and designed Instagram posts and Reels as Marketing Committee Head</li>
+          <li>Filmed and edited a senior farewell video as a capstone project</li>
+        </ul>
+      </div>
+      <div class="exp-date">Dec 2024 — Present</div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-org">
+        <span>Consulting</span>
+        Acres LLC
+      </div>
+      <div>
+        <div class="exp-role">Management Consultant Intern</div>
+        <ul class="exp-bullets">
+          <li>Attended live client meetings and developed pre-meeting checklists in Excel to improve efficiency</li>
+          <li>Assisted in development of Confidential Information Memorandums (CIMs)</li>
+          <li>Gained real-world consulting experience in a professional environment</li>
+        </ul>
+      </div>
+      <div class="exp-date">Mar 2024 — Jul 2025</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <p class="section-tag">Services</p>
+    <h2 class="section-heading">How I Can<br><em>Help You</em></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="svc-num">01</div>
+      <div class="svc-name">Content Strategy</div>
+      <p class="svc-desc">A clear content plan — pillars, formats, posting cadence, and hook formulas — designed around your brand's voice and goals.</p>
+      <span class="svc-tag">Instagram · TikTok</span>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="svc-num">02</div>
+      <div class="svc-name">Reels &amp; Short-Form Video</div>
+      <p class="svc-desc">From scripting to filming to editing — short-form video content built to stop the scroll and drive real engagement.</p>
+      <span class="svc-tag">Reels · TikTok</span>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="svc-num">03</div>
+      <div class="svc-name">Account Management</div>
+      <p class="svc-desc">Full management of your Instagram or TikTok — content creation, scheduling, community interaction, and monthly reporting.</p>
+      <span class="svc-tag">Instagram · TikTok</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="svc-num">04</div>
+      <div class="svc-name">Brand Audit</div>
+      <p class="svc-desc">An honest review of what's working and what's hurting your growth, with a clear action plan to fix it.</p>
+      <span class="svc-tag">Any Platform</span>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="svc-num">05</div>
+      <div class="svc-name">Hook &amp; Caption Writing</div>
+      <p class="svc-desc">Compelling hooks and captions that match platform behavior — written to capture attention in the first second.</p>
+      <span class="svc-tag">Instagram · TikTok</span>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="svc-num">06</div>
+      <div class="svc-name">Photo &amp; Feed Direction</div>
+      <p class="svc-desc">Visual cohesion for your Instagram grid — aesthetic direction, content planning, and styling guidance for brand shoots.</p>
+      <span class="svc-tag">Instagram</span>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-header reveal">
+    <p class="section-tag">Portfolio</p>
+    <h2 class="section-heading">Selected<br><em>Projects</em></h2>
+  </div>
+  <div class="work-grid">
+    <div class="work-card reveal" data-num="01">
+      <div class="work-platforms">
+        <span class="work-plat">YouTube</span>
+        <span class="work-plat">Instagram</span>
+      </div>
+      <div class="work-client">Purdue University</div>
+      <div class="work-title">Boiler Ambassadors Content Program</div>
+      <p class="work-result">Produced vlogs and scripted episodes for Purdue's official YouTube channel. Modeled for <strong>Brand Studio campaigns</strong> and created content to support student recruitment outreach.</p>
+    </div>
+    <div class="work-card reveal reveal-delay-1" data-num="02">
+      <div class="work-platforms">
+        <span class="work-plat">Instagram</span>
+        <span class="work-plat">LinkedIn</span>
+      </div>
+      <div class="work-client">Alpha Kappa Psi</div>
+      <div class="work-title">Fraternity Social Media Management</div>
+      <p class="work-result">Managed official Instagram and LinkedIn as Marketing Committee Head and later VP of PR. Designed posts, produced Reels, and led a committee to maintain consistent, <strong>trend-aligned content</strong>.</p>
+    </div>
+    <div class="work-card reveal" data-num="03">
+      <div class="work-platforms">
+        <span class="work-plat">YouTube</span>
+      </div>
+      <div class="work-client">Purdue Boiler Ambassadors</div>
+      <div class="work-title">"A Closer Look" — Campus Series</div>
+      <p class="work-result">Wrote, memorized, and hosted a scripted video series highlighting key landmarks across Purdue's campus. Managed <strong>end-to-end production</strong> from scripting to final edit.</p>
+    </div>
+    <div class="work-card reveal reveal-delay-1" data-num="04">
+      <div class="work-platforms">
+        <span class="work-plat">Video Production</span>
+      </div>
+      <div class="work-client">Alpha Kappa Psi</div>
+      <div class="work-title">Senior Farewell Video</div>
+      <p class="work-result">Conceived, filmed, and edited a chapter-wide video as a farewell gift to graduating seniors. Delivered a polished final product that <strong>captured the chapter's culture</strong> and relationships.</p>
+    </div>
+  </div>
+  <p class="work-note reveal">* Projects reflect real experience from Purdue Boiler Ambassadors and Alpha Kappa Psi leadership roles. Freelance case studies added as projects complete.</p>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="background: var(--surface);">
+  <div class="section-header reveal">
+    <p class="section-tag">Content Gallery</p>
+    <h2 class="section-heading">See It in<br><em>Action</em></h2>
+  </div>
+
+  <div class="gallery-filters reveal" style="display:flex; gap:0.75rem; margin-bottom:2.5rem; flex-wrap:wrap;">
+    <button class="gal-filter active" data-filter="all">All</button>
+    <button class="gal-filter" data-filter="tiktok">TikTok</button>
+    <button class="gal-filter" data-filter="reels">Reels</button>
+    <button class="gal-filter" data-filter="graphic">Graphics</button>
+    <button class="gal-filter" data-filter="modeling">Modeling</button>
+    <button class="gal-filter" data-filter="youtube">YouTube</button>
+  </div>
+
+  <div class="gallery-grid reveal" id="galleryGrid">
+
+    <!-- ── TIKTOKS ── -->
+    <div class="gal-item" data-type="tiktok">
+      <a href="https://www.tiktok.com/@eliana.mara/video/7163578948503263531" target="_blank" class="tiktok-card">
+        <div class="tiktok-card-inner">
+          <div class="tt-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </div>
+          <div class="tt-label">Watch on TikTok</div>
+          <div class="tt-caption">the new arrivals are iconic | @iblasonofficial</div>
+          <div class="tt-arrow">↗</div>
+        </div>
+      </a>
+      <div class="gal-meta">
+        <span class="gal-type-tag tiktok">TikTok</span>
+        <span class="gal-caption">iBlason — New Arrivals Are Iconic</span>
+      </div>
+    </div>
+
+    <div class="gal-item" data-type="tiktok">
+      <a href="https://www.tiktok.com/@eliana.mara/video/7298304089795070766" target="_blank" class="tiktok-card">
+        <div class="tiktok-card-inner">
+          <div class="tt-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </div>
+          <div class="tt-label">Watch on TikTok</div>
+          <div class="tt-caption">you know what will make you happy? getting an i-blason case 👀</div>
+          <div class="tt-arrow">↗</div>
+        </div>
+      </a>
+      <div class="gal-meta">
+        <span class="gal-type-tag tiktok">TikTok</span>
+        <span class="gal-caption">iBlason — Get a Case That Makes You Happy</span>
+      </div>
+    </div>
+
+    <div class="gal-item" data-type="tiktok">
+      <a href="https://www.tiktok.com/@eliana.mara/video/7299621957539089194" target="_blank" class="tiktok-card">
+        <div class="tiktok-card-inner">
+          <div class="tt-icon">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.75a4.85 4.85 0 0 1-1.01-.06z"/></svg>
+          </div>
+          <div class="tt-label">Watch on TikTok</div>
+          <div class="tt-caption">thank you again i-blason for this amazing care package ❤️</div>
+          <div class="tt-arrow">↗</div>
+        </div>
+      </a>
+      <div class="gal-meta">
+        <span class="gal-type-tag tiktok">TikTok</span>
+        <span class="gal-caption">iBlason — Thank You for the Care Package</span>
+      </div>
+    </div>
+
+    <!-- ── REELS ── -->
+    <div class="gal-item" data-type="reels">
+      <div class="gal-embed-wrap">
+        <iframe src="https://www.instagram.com/reel/DIuZyHGSwWe/embed/" allowfullscreen title="AKPsi Reel 1"></iframe>
+      </div>
+      <div class="gal-meta">
+        <span class="gal-type-tag reels">Reel</span>
+        <span class="gal-caption">Alpha Kappa Psi — Semester Recap</span>
+      </div>
+    </div>
+
+    <div class="gal-item" data-type="reels">
+      <div class="gal-embed-wrap">
+        <iframe src="https://www.instagram.com/reel/DUIyMlJEeub/embed/" allowfullscreen title="AKPsi Reel 2"></iframe>
+      </div>
+      <div class="gal-meta">
+        <span class="gal-type-tag reels">Reel</span>
+        <span class="gal-caption">Alpha Kappa Psi — Chapter Highlights</span>
+      </div>
+    </div>
+
+    <!-- ── GRAPHICS ── -->
+    <div class="gal-item" data-type="graphic">
+      <div class="gal-embed-wrap gal-ig-post-wrap">
+        <iframe src="https://www.instagram.com/p/DHzbsfwv4jx/embed/" allowfullscreen title="AKPsi graphic 1"></iframe>
+      </div>
+      <div class="gal-meta">
+        <span class="gal-type-tag graphic">Graphic</span>
+        <span class="gal-caption">Alpha Kappa Psi — Instagram Post Design</span>
+      </div>
+    </div>
+
+    <div class="gal-item" data-type="graphic">
+      <div class="gal-embed-wrap gal-ig-post-wrap">
+        <iframe src="https://www.instagram.com/p/DVotg2_D0C1/embed/" allowfullscreen title="AKPsi graphic 2"></iframe>
+      </div>
+      <div class="gal-meta">
+        <span class="gal-type-tag graphic">Graphic</span>
+        <span class="gal-caption">Alpha Kappa Psi — Instagram Post Design</span>
+      </div>
+    </div>
+
+    <!-- ── MODELING ── -->
+    <div class="gal-item" data-type="modeling">
+      <div class="gal-embed-wrap gal-ig-post-wrap">
+        <iframe src="https://www.instagram.com/p/DUPCaT_jbhS/embed/" allowfullscreen title="Purdue Brand Studio modeling"></iframe>
+      </div>
+      <div class="gal-meta">
+        <span class="gal-type-tag modeling">Modeling</span>
+        <span class="gal-caption">Purdue University — Brand Studio Campaign</span>
+      </div>
+    </div>
+
+    <div class="gal-item" data-type="modeling">
+      <div class="gal-embed-wrap">
+        <iframe src="https://www.instagram.com/reel/DSXgCGRjmXy/embed/" allowfullscreen title="Purdue Brand Studio reel"></iframe>
+      </div>
+      <div class="gal-meta">
+        <span class="gal-type-tag modeling">Modeling</span>
+        <span class="gal-caption">Purdue University — Life at Purdue Feature</span>
+      </div>
+    </div>
+
+    <!-- Brand Studio Ad photo -->
+    <div class="gal-item" data-type="modeling">
+      <div class="gal-embed-wrap gal-photo-wrap">
+        <img src="Polish_20260330_212908693.jpg" alt="Eliana pointing at Purdue Brand Studio Always a Classic ad" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+        <div class="gal-photo-overlay">
+          <span>Purdue Brand Studio — "Always a Classic" Ad</span>
+        </div>
+      </div>
+      <div class="gal-meta">
+        <span class="gal-type-tag modeling">Modeling</span>
+        <span class="gal-caption">Purdue Brand Studio — "Always a Classic" Ad</span>
+      </div>
+    </div>
+
+    <!-- ── YOUTUBE ── -->
+    <div class="gal-item" data-type="youtube">
+      <div class="gal-embed-wrap gal-yt-wrap">
+        <iframe src="https://www.youtube.com/embed?listType=search&list=eliana+mara+5-9+after+9-5+college+purdue+boiler+ambassadors" allowfullscreen title="My 5-9 after my 9-5 YouTube vlog"></iframe>
+        <div class="gal-yt-placeholder">
+          <div style="font-size:2.5rem; color:#444; margin-bottom:0.75rem;">▶</div>
+          <div style="font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; color:#555; margin-bottom:0.5rem;">YouTube</div>
+          <div style="font-size:0.8rem; color:#666; line-height:1.5; text-align:center; padding:0 1rem;">My 5-9 After My 9-5<br>College Edition</div>
+          <a href="https://www.youtube.com/@PurdueBoilerAmbassadors" target="_blank" style="margin-top:1rem; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:2px;">Watch on YouTube ↗</a>
+        </div>
+      </div>
+      <div class="gal-meta">
+        <span class="gal-type-tag youtube">YouTube</span>
+        <span class="gal-caption">My 5-9 After My 9-5 — College Edition</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY STYLES -->
+<style>
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.gal-filter {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.2rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--warm-gray);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.gal-filter:hover, .gal-filter.active {
+  background: var(--black);
+  color: var(--gold);
+  border-color: var(--black);
+}
+.gal-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.gal-item.hidden { display: none; }
+.gal-embed-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 177%;
+  background: var(--black);
+  overflow: hidden;
+}
+.gal-ig-post-wrap { padding-bottom: 130%; }
+.gal-photo-wrap   { padding-bottom: 125%; }
+.gal-yt-wrap      { padding-bottom: 120%; }
+.gal-embed-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.gal-photo-overlay {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 100%);
+  padding: 1.5rem 1rem 0.75rem;
+  font-size: 0.72rem;
+  color: #ccc;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.gal-item:hover .gal-photo-overlay { opacity: 1; }
+.gal-yt-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #0f0f0f;
+  border: 1px solid #1e1e1e;
+}
+.gal-meta { display: flex; align-items: center; gap: 0.6rem; }
+.gal-type-tag {
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  font-family: var(--font-sans);
+  flex-shrink: 0;
+}
+.gal-type-tag.tiktok   { background: #010101; color: #fff; }
+.gal-type-tag.reels    { background: #833ab4; color: #fff; }
+.gal-type-tag.graphic  { background: var(--gold); color: var(--black); }
+.gal-type-tag.modeling { background: #1a1a1a; color: var(--gold); }
+.gal-type-tag.youtube  { background: #ff0000; color: #fff; }
+.gal-caption { font-size: 0.78rem; color: var(--warm-gray); line-height: 1.3; }
+
+/* TikTok link cards */
+.tiktok-card {
+  display: block;
+  text-decoration: none;
+  background: #0f0f0f;
+  border: 1px solid #1e1e1e;
+  transition: border-color 0.25s, transform 0.2s;
+}
+.tiktok-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+.tiktok-card-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2.5rem 1.5rem;
+  min-height: 280px;
+  text-align: center;
+  position: relative;
+}
+.tt-icon { color: #fff; }
+.tt-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-family: var(--font-sans);
+}
+.tt-caption {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 300;
+  color: #aaa;
+  line-height: 1.5;
+  max-width: 200px;
+}
+.tt-arrow {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  font-size: 1rem;
+  color: #333;
+  transition: color 0.2s, transform 0.2s;
+}
+.tiktok-card:hover .tt-arrow { color: var(--gold); transform: translate(2px, -2px); }
+@media (max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .gallery-grid { grid-template-columns: 1fr; } }
+</style>
+
+<script>
+document.querySelectorAll('.gal-filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.gal-filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    document.querySelectorAll('.gal-item').forEach(item => {
+      item.classList.toggle('hidden', filter !== 'all' && item.dataset.type !== filter);
+    });
+  });
+});
+</script>
+
+
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <p class="section-tag">Let's Work Together</p>
+      <div class="contact-big">Ready<br>when you<br><em>are.</em></div>
+      <p class="contact-sub">Whether you need a one-time audit or an ongoing content partner — I'd love to hear about your brand.</p>
+      <a href="mailto:elianamgross@gmail.com" class="btn-gold">Send an Email</a>
+    </div>
+    <div class="contact-links reveal reveal-delay-2">
+      <a href="mailto:elianamgross@gmail.com" class="contact-link-row">
+        <div>
+          <div class="contact-link-label">Email</div>
+          <div class="contact-link-val">elianamgross@gmail.com</div>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://linkedin.com/in/elianagross" class="contact-link-row" target="_blank">
+        <div>
+          <div class="contact-link-label">LinkedIn</div>
+          <div class="contact-link-val">linkedin.com/in/elianagross</div>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="tel:2076917108" class="contact-link-row">
+        <div>
+          <div class="contact-link-label">Phone</div>
+          <div class="contact-link-val">(207) 691-7108</div>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+      <a href="https://instagram.com/elianamarag" class="contact-link-row" target="_blank">
+        <div>
+          <div class="contact-link-label">Instagram</div>
+          <div class="contact-link-val">@elianamarag</div>
+        </div>
+        <span class="contact-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Eliana Gross</div>
+  <div class="footer-copy">© 2026 — Social Media Marketing Portfolio</div>
+</footer>
+
+<script>
+  // Scroll nav
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
